@@ -13,27 +13,30 @@
 <div class="container">
     <h5>Данные на {{ last_record.obs_time }}</h5>
     <br>
-    <table class="table table-sm">
-        <thead class="thead-dark">
-            <tr>
-                <th class="align-middle">Давление (мм рт. ст.)</th>
-                <th>Температура (°C)</th>
-                <th>Ощущаемая температура (°C)</th>
-                <th>Скорость ветра (м/с)</th>
-                <th>Направление ветра</th>
-                <th>Влажность воздуха (%)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{ last_record.pressure }}</td>
-                <td>{{ last_record.temp }}</td>
-                <td>{{ last_record.feels_like }}</td>
-                <td>{{ last_record.wind_speed }}</td>
-                <td>{{ last_record.wind_dir }}</td>
-                <td>{{ last_record.humidity }}</td>
-            </tr>
-        </tbody>
+    <table class="table table-sm table-hover">
+        <tr>
+            <th>Давление (мм рт. ст.)</th>
+            <td>{{ last_record.pressure }}</td>
+        </tr>
+        <tr>
+            <th>Температура (°C)</th>
+            <td>{{ last_record.temp }}</td>
+        </tr>
+            <th>Ощущаемая температура (°C)</th>
+            <td>{{ last_record.feels_like }}</td>
+        </tr>
+        <tr>
+            <th>Скорость ветра (м/с)</th>
+            <td>{{ last_record.wind_speed }}</td>
+        </tr>
+        <tr>
+            <th>Направление ветра</th>
+            <td>{{ last_record.wind_dir }}</td>
+        </tr>
+        <tr>
+            <th>Влажность воздуха (%)</th>
+            <td>{{ last_record.humidity }}</td>
+        </tr>
     </table>
 </div>
 {% else %}
