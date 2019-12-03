@@ -1,0 +1,5 @@
+API_KEY = 'Eebaex4o-oy7quoaH-tu9joo4a'
+DB_HOST = 'localhost'
+DB_NAME = 'api'
+DB_USER = 'yandex_weather_user'
+DB_PASS = 'Chitaih4'
