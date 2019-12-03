@@ -61,4 +61,4 @@ def hello_world():
 
 
 logger.info('Starting app...')
-app.run()
+# app.run()
