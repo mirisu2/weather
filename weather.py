@@ -55,7 +55,7 @@ scheduler.start()
 
 
 @app.route('/')
-def hello_world():
+def show_weather():
     last_record = Weather.get_last_weather()
     return render_template('index.html', last_record=last_record)
 
