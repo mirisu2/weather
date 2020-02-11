@@ -10,3 +10,4 @@ venv.bak/
 .idea/
 *.ini
 wsgi.ini
+wsgi.py
