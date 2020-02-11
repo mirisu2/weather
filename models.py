@@ -32,5 +32,3 @@ class Weather(Base):
                                'FROM_UNIXTIME(obs_time) AS obs_time FROM yandex_weather ORDER BY id DESC '
                                'LIMIT 1').fetchone()
 
-
-Base.metadata.create_all(engine)

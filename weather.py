@@ -61,4 +61,3 @@ def show_weather():
 
 
 logger.info('Starting app...')
-# app.run()
