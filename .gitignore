@@ -12,3 +12,4 @@ venv.bak/
 wsgi.ini
 wsgi.py
 logs/
+*.bak
