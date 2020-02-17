@@ -47,8 +47,7 @@ function show_pressure(labels, pressure){
             labels: labels,
             datasets: [{
                 label: 'Давление',
-//                borderWidth: 1,
-                backgroundColor: 'rgba(229, 66, 232, 0.1)',
+                backgroundColor: 'rgba(229, 66, 232, 0.2)',
                 borderColor: 'rgba(229, 66, 232, 0.5)',
                 data: pressure
             }]
@@ -76,8 +75,7 @@ function show_humidity(labels, humidity){
             labels: labels,
             datasets: [{
                 label: 'Влажность воздуха',
-                borderWidth: 1,
-                backgroundColor: 'rgba(114, 226, 151, 0.1)',
+                backgroundColor: 'rgba(114, 226, 151, 0.2)',
                 borderColor: 'rgba(114, 226, 151, 0.5)',
                 data: humidity
             }]
