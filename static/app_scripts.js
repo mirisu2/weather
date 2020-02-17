@@ -47,7 +47,7 @@ function show_pressure(pressure){
             labels: res['labels'],
             datasets: [{
                 label: 'Давление',
-                borderWidth = 1,
+                borderWidth: 1,
                 backgroundColor: 'rgba(229, 66, 232, 0.1)',
                 borderColor: 'rgba(229, 66, 232, 0.5)',
                 data: pressure
@@ -78,8 +78,8 @@ function get_data_for_chart(data){
 
                 let res = JSON.parse(this.responseText);
                 if (res['status'] == true) {
-                    show_temp(res['temp'], res['feels_like'])
-//                    show_pressure(res['pressure'])
+                    show_temp(res['temp'], res['feels_like']);
+                    show_pressure(res['pressure']);
 
                 }
             }
