@@ -1,5 +1,5 @@
 function show_temp(labels, temp, feels_like){
-    let ctx1 = document.getElementById('weatherChart1').getContext('2d');
+    let ctx1 = document.getElementById('temp').getContext('2d');
     let myChart1 = new Chart(ctx1, {
         type: 'line',
         data: {
@@ -40,7 +40,7 @@ function show_temp(labels, temp, feels_like){
 }
 
 function show_pressure(labels, pressure){
-    let ctx2 = document.getElementById('weatherChart2').getContext('2d');
+    let ctx2 = document.getElementById('pressure').getContext('2d');
     let myChart2 = new Chart(ctx2, {
         type: 'line',
         data: {
@@ -68,6 +68,35 @@ function show_pressure(labels, pressure){
     });
 }
 
+function show_humidity(labels, humidity){
+    let ctx2 = document.getElementById('humidity').getContext('2d');
+    let myChart2 = new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Влажность воздуха',
+                borderWidth: 1,
+                backgroundColor: 'rgba(114, 226, 151, 0.1)',
+                borderColor: 'rgba(114, 226, 151, 0.5)',
+                data: humidity
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        callback: function(value, index, values) {
+                            return  value + ' %';
+                        }
+                    }
+                }]
+            }
+        }
+    });
+}
+
 function get_data_for_chart(data){
     if (data.length > 0) {
 
@@ -79,6 +108,7 @@ function get_data_for_chart(data){
                 if (res['status'] == true) {
                     show_temp(res['labels'], res['temp'], res['feels_like']);
                     show_pressure(res['labels'], res['pressure']);
+                    show_humidity(res['labels'], res['humidity']);
 
                 }
             }
