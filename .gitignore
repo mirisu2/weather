@@ -13,3 +13,4 @@ wsgi.ini
 wsgi.py
 logs/
 *.bak
+config.py
