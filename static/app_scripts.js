@@ -77,10 +77,9 @@ function get_data_for_chart(data){
             if (this.readyState == 4 && this.status == 200) {
 
                 let res = JSON.parse(this.responseText);
-//                console.log(res);
                 if (res['status'] == true) {
-//                    show_temp(res['temp'], res['feels_like'])
-                    show_pressure(res['pressure'])
+                    show_temp(res['temp'], res['feels_like'])
+//                    show_pressure(res['pressure'])
 
                 }
             }
