@@ -20,12 +20,6 @@ app = Flask(__name__)
 scheduler = BackgroundScheduler()
 
 
-def ping_mysql():
-    # session.execute('SELECT 1+1')
-    response = requests.get('https://weather.h744.host')
-    logger.debug(response.status_code)
-
-
 def get_data_from_api():
     try:
         logger.info('Making request...')
@@ -60,7 +54,6 @@ def get_data_from_api():
 
 
 scheduler.add_job(get_data_from_api, 'cron', minute=45, max_instances=1)
-scheduler.add_job(ping_mysql, 'cron', minute='*/30')
 scheduler.start()
 
 
