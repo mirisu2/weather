@@ -4,43 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Weather</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 </head>
 <body>
 {% if last_record %}
 <div class="container">
-    <h5>Данные на {{ last_record.obs_time }}</h5>
-    <br>
-    <table class="table table-sm table-hover">
-        <tr>
-            <th>Давление (мм рт. ст.)</th>
-            <td>{{ last_record.pressure }}</td>
-        </tr>
-        <tr>
-            <th>Температура (°C)</th>
-            <td>{{ last_record.temp }}</td>
-        </tr>
-            <th>Ощущаемая температура (°C)</th>
-            <td>{{ last_record.feels_like }}</td>
-        </tr>
-        <tr>
-            <th>Скорость ветра (м/с)</th>
-            <td>{{ last_record.wind_speed }}</td>
-        </tr>
-        <tr>
-            <th>Направление ветра</th>
-            <td>{{ last_record.wind_dir }}</td>
-        </tr>
-        <tr>
-            <th>Влажность воздуха (%)</th>
-            <td>{{ last_record.humidity }}</td>
-        </tr>
-    </table>
+    <div>
+        <h2>По данным <a href="https://yandex.ru/pogoda/saint-petersburg" target="_blank">«Яндекс.Погода»</a> на {{ last_record.obs_time }}</h2>
+    </div>
+    <hr>
+    <div>
+        <p>Давление: <span class="bold-me">{{ last_record.pressure }} мм рт. ст.</span></p>
+        <p>Температура: <span class="bold-me">{{ last_record.temp }} °C</span></p>
+        <p>Ощущаемая температура: <span class="bold-me">{{ last_record.feels_like }} °C</span></p>
+        <p>Скорость ветра: <span class="bold-me">{{ last_record.wind_speed }} м/с</span></p>
+        <p>Направление ветра: <span class="bold-me">{{ last_record.wind_dir }}</span></p>
+        <p>Влажность воздуха: <span class="bold-me">{{ last_record.humidity }} %</span></p>
+    </div>
+    <hr>
+    <div>
+        <input type="date" onchange="get_data_for_chart(this.value)">
+    </div>
+
+    <div>
+        <canvas id="weatherChart1">
+            <p>Your browser does not support the canvas element.</p>
+        </canvas>
+    </div>
+
+    <div>
+        <canvas id="weatherChart2">
+            <p>Your browser does not support the canvas element.</p>
+        </canvas>
+    </div>
+
 </div>
 {% else %}
     <h3>Информация отсутствует</h3>
 {% endif %}
+<script src="{{ url_for('static', filename='app_scripts.js') }}"></script>
 </body>
 </html>

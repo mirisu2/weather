@@ -7,7 +7,7 @@ from sqlalchemy.sql import func
 import config
 
 engine = create_engine(f"mysql+pymysql://{config.DB_USER}:{config.DB_PASS}@{config.DB_HOST}/{config.DB_NAME}",
-                       echo=False)
+                       echo=False, pool_pre_ping=True, pool_recycle=600)
 Base = declarative_base()
 Session = sessionmaker(bind=engine)
 session = Session()
@@ -28,7 +28,30 @@ class Weather(Base):
     season = Column(String(6), nullable=False)
 
     def get_last_weather():
-        return session.execute('SELECT id, pressure, temp, feels_like, wind_speed, wind_dir, humidity, '
+        record = session.execute('SELECT id, pressure, temp, feels_like, wind_speed, wind_dir, humidity, '
                                'FROM_UNIXTIME(obs_time) AS obs_time FROM yandex_weather ORDER BY id DESC '
                                'LIMIT 1').fetchone()
+        return {
+            'pressure': record.pressure,
+            'temp': record.temp,
+            'feels_like': record.feels_like,
+            'wind_speed': record.wind_speed,
+            'wind_dir': record.wind_dir,
+            'humidity': record.humidity,
+            'obs_time': record.obs_time
+        }
+
+    def get_selected_day(day):
+        res = session.execute('SELECT id, pressure, temp, feels_like, humidity, FROM_UNIXTIME(obs_time) AS obs_time '
+                              'FROM yandex_weather WHERE date LIKE \'' + day + '%\'').fetchall()
+        answer = []
+        for i in res:
+            answer.append({
+                'obs_time': str(i[5]).split(' ')[1],
+                'pressure': i[1],
+                'temp': i[2],
+                'feels_like': i[3],
+                'humidity': i[4]
+            })
+        return answer
 
