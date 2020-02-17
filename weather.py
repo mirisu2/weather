@@ -60,7 +60,7 @@ def get_data_from_api():
 
 
 scheduler.add_job(get_data_from_api, 'cron', minute=45, max_instances=1)
-scheduler.add_job(ping_mysql, 'cron', minute='*/5')
+scheduler.add_job(ping_mysql, 'cron', minute='*/30')
 scheduler.start()
 
 
