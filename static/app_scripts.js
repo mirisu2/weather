@@ -58,7 +58,7 @@ function show_pressure(labels, pressure){
                 yAxes: [{
                     display: true,
                     ticks: {
-                        beginAtZero: true,
+//                        beginAtZero: true,
                         callback: function(value, index, values) {
                             return  value + ' мм рт. ст.';
                         }
