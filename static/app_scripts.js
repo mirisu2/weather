@@ -17,6 +17,18 @@ function show_temp(labels, temp, feels_like){
                 data: feels_like,
                 fill: false,
             }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        callback: function(value, index, values) {
+                            return  value + ' °C';
+                        }
+                    }
+                }]
+            }
         }
     });
 }
