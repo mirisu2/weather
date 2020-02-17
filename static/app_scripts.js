@@ -17,24 +17,6 @@ function show_temp(labels, temp, feels_like){
                 data: feels_like,
                 fill: false,
             }]
-        },
-        options: {
-            scales: {
-                x: {
-                    display: true,
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Value'
-                    }
-                },
-                y: {
-                    display: true,
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Month'
-                    }
-                }
-            }
         }
     });
 }
