@@ -42,7 +42,7 @@ function show_temp(labels, temp, feels_like){
 function show_pressure(labels, pressure){
     let ctx2 = document.getElementById('weatherChart2').getContext('2d');
     let myChart2 = new Chart(ctx2, {
-        type: 'bar',
+        type: 'line',
         data: {
             labels: labels,
             datasets: [{
