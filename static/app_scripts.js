@@ -1,9 +1,9 @@
-function show_temp(temp, feels_like){
+function show_temp(labels, temp, feels_like){
     let ctx1 = document.getElementById('weatherChart1').getContext('2d');
     let myChart1 = new Chart(ctx1, {
         type: 'line',
         data: {
-            labels: res['labels'],
+            labels: labels,
             datasets: [{
                 label: 'Температура',
                 backgroundColor: 'rgba(51, 112, 183, 1.0)',
@@ -39,12 +39,12 @@ function show_temp(temp, feels_like){
     });
 }
 
-function show_pressure(pressure){
+function show_pressure(labels, pressure){
     let ctx2 = document.getElementById('weatherChart2').getContext('2d');
     let myChart2 = new Chart(ctx2, {
         type: 'bar',
         data: {
-            labels: res['labels'],
+            labels: labels,
             datasets: [{
                 label: 'Давление',
                 borderWidth: 1,
@@ -78,8 +78,8 @@ function get_data_for_chart(data){
 
                 let res = JSON.parse(this.responseText);
                 if (res['status'] == true) {
-                    show_temp(res['temp'], res['feels_like']);
-                    show_pressure(res['pressure']);
+                    show_temp(res['labels'], res['temp'], res['feels_like']);
+                    show_pressure(res['labels'], res['pressure']);
 
                 }
             }
