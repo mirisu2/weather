@@ -27,7 +27,7 @@ class Weather(Base):
                       comment='Время замера погодных данных в формате Unixtime.')
     season = Column(String(6), nullable=False)
 
-    def get_last_weather():
+    def get_last_weather(self):
         record = session.execute('SELECT id, pressure, temp, feels_like, wind_speed, wind_dir, humidity, '
                                'FROM_UNIXTIME(obs_time) AS obs_time FROM yandex_weather ORDER BY id DESC '
                                'LIMIT 1').fetchone()
@@ -41,7 +41,7 @@ class Weather(Base):
             'obs_time': record.obs_time
         }
 
-    def get_selected_day(day):
+    def get_selected_day(self, day):
         res = session.execute('SELECT id, pressure, temp, feels_like, humidity, FROM_UNIXTIME(obs_time) AS obs_time '
                               'FROM yandex_weather WHERE date LIKE \'' + day + '%\'').fetchall()
         answer = []
