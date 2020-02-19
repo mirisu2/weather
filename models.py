@@ -31,7 +31,7 @@ class Weather(Base):
         record = session.execute('SELECT id, pressure, temp, feels_like, wind_speed, wind_dir, humidity, '
                                'FROM_UNIXTIME(obs_time) AS obs_time FROM yandex_weather ORDER BY id DESC '
                                'LIMIT 1').fetchone()
-        return {
+        result = {
             'pressure': record.pressure,
             'temp': record.temp,
             'feels_like': record.feels_like,
@@ -40,6 +40,7 @@ class Weather(Base):
             'humidity': record.humidity,
             'obs_time': record.obs_time
         }
+        return result
 
     def get_selected_day(day):
         res = session.execute('SELECT id, pressure, temp, feels_like, humidity, FROM_UNIXTIME(obs_time) AS obs_time '
